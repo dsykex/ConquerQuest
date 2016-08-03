@@ -58,7 +58,7 @@ export class HomePage {
 
     
     loadData(){
-        this.getData('get all users', true).subscribe(data => {
+            this.bService.getData('get all users', true).subscribe(data => {
             console.log(data);
         });
     }
@@ -67,18 +67,5 @@ export class HomePage {
         setInterval(() => {
             this.initGeo();
         }, 1000);
-    }
-    
-    getData(query, all){
-        let data = JSON.stringify({
-                db_host: 'flypapermagazine.com',
-                db_username: 'flypaper_scmgr',
-                db_name: 'flypaper_scdb',
-                db_password: 'maxwel123',
-                query: query,
-                all: all
-        });
-
-        return this.http.post('http://dsykes.esy.es/php/adb/adb.php', data).map(res => res.json());
     }
 }

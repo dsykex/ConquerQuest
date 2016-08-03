@@ -23,4 +23,4 @@ StatusBar.backgroundColorByHexString('#aeaeae'); // set status bar to white
   }
 }
 
-ionicBootstrap(MyApp, HTTP_PROVIDERS);
+ionicBootstrap(MyApp, [HTTP_PROVIDERS]);

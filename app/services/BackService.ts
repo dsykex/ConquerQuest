@@ -1,14 +1,18 @@
-import {Http} from '@angular/http';
+import {Component} from '@angular/core';
+import {Http, HTTP_PROVIDERS} from '@angular/http';
 import {Injectable} from '@angular/core';
 import {Geolocation} from 'ionic-native';
 
+@Component({
+providers: [Http, HTTP_PROVIDERS]
+})
 export class BackService{
     lat: any;
     long:any;
     locationError: string;
-    http: Http
+
     
-    constructor(){ }
+constructor(private http: Http){ }
     
     getLatLng(){
         let options = {maximumAge: 0, timeout: 5000, enableHighAccuracy: true};
