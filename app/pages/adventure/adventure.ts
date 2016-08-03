@@ -47,6 +47,5 @@ export class AdventureMode{
         let watchLoc = Geolocation.watchPosition(options).subscribe(pos => {
              this.map.panTo(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
         });
-       
     }
 }

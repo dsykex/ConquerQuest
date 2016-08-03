@@ -15,7 +15,7 @@
         <p>{{ lat }} - {{ long }}</p>
         <p>{{ address }}</p>
     </ion-card>
-    <ion-card class="character-bg">
+    <ion-card class="character-bg" (click)="goToChar()">
       <div class="card-title">My Character</div>
     </ion-card>
 
@@ -29,7 +29,7 @@
     <div class="card-subtitle">72 Known Skills</div>
     </ion-card>
 
-    <ion-card class="adventure-bg" (click)="goToPage(AdventureMode)">
+    <ion-card class="adventure-bg" (click)="goToAdv()">
 
     <div class="card-title">Adventure</div>
     <div class="card-subtitle">28 Listings</div>

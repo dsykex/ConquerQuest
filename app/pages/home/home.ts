@@ -9,32 +9,27 @@ import {Observer} from 'rxjs/Observer';
 import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/map';
 import {AdventureMode} from '../adventure/adventure';
+import {CharacterPage} from '../character/character';
 
 @Component({
-  templateUrl: 'build/pages/home/home.html'
+  templateUrl: 'build/pages/home/home.html',
 })
 export class HomePage {
     loC: any;
     loCError: any;
     address: string;
     users:any;
-mess: string;
-incre: any;
-lat: any;
-long: any;
+    mess: string;
+    incre: any;
+    lat: any;
+    long: any;
+    
     constructor(private navCtrl: NavController, private http: Http)
     {
-        this.initGeo();
-        setTimeout(function(){
-            setInterval(function(){
-                this.initGeo();
-            }, 1000);
-        },4000);
+
     }
 
-    initGeo()
-    {
-    
+    initGeo(){
         let options = {maximumAge: 0, timeout: 5000, enableHighAccuracy: true};
         Geolocation.getCurrentPosition(options).then(pos => {
             let lat = pos.coords.latitude;
@@ -53,7 +48,6 @@ long: any;
     
     refreshLocation(){
         let options = {maximumAge: 0, timeout: 6000, enableHighAccuracy: true};
-
         let watchLocation = Geolocation.watchPosition().subscribe(pos => {
             let lat = pos.coords.latitude;
             let long = pos.coords.longitude;
@@ -69,10 +63,15 @@ long: any;
         }, (error) => {console.log(error.message)});
     }
     
-    goToPage(){
+    goToChar(){
+        this.navCtrl.push(CharacterPage);
+    }
+    
+    goToAdv(){
         this.navCtrl.push(AdventureMode);
     }
 
+    
     loadData(){
        let data = JSON.stringify({
             db_host: 'flypapermagazine.com',
