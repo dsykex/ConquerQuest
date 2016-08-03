@@ -2,7 +2,7 @@ import {Component, enableProdMode} from '@angular/core';
 import {Platform, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {HomePage} from './pages/home/home';
-
+import {HTTP_PROVIDERS} from '@angular/http';
 //enableProdMode()
 
 @Component({
@@ -23,4 +23,4 @@ StatusBar.backgroundColorByHexString('#aeaeae'); // set status bar to white
   }
 }
 
-ionicBootstrap(MyApp);
+ionicBootstrap(MyApp, HTTP_PROVIDERS);

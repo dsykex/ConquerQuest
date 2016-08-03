@@ -1,18 +1,17 @@
 import {Component} from '@angular/core';
 import {Http} from '@angular/http';
 import {Player} from '../../src/Player';
+import {BackService} from '../../services/BackService';
 
 @Component({
     templateUrl: 'build/pages/character/character.html',
-    providers: [Player]
+    providers: [Player, BackService]
 })
 
 export class CharacterPage {
-    plrShit: any;
+    myPlr: Player;
     
-    constructor(private http: Http){
-        this.plrShit = new Player();
-        this.plrShit.name = 'DSykes';
-        console.log(this.plrShit.name);
+constructor(private http: Http){
+        
     }   
 }

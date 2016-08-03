@@ -1,0 +1,34 @@
+import {Http} from '@angular/http';
+import {Injectable} from '@angular/core';
+import {Geolocation} from 'ionic-native';
+
+export class BackService{
+    lat: any;
+    long:any;
+    locationError: string;
+    http: Http
+    
+    constructor(){ }
+    
+    getLatLng(){
+        let options = {maximumAge: 0, timeout: 5000, enableHighAccuracy: true};
+        return Geolocation.getCurrentPosition(options);
+    }
+    
+    getPosInfo(lat, long){
+        return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+long+'', null).map((res) => res.json());
+    }
+    
+    getData(query, all){
+
+    let data = JSON.stringify({
+                db_host: 'flypapermagazine.com',
+                db_username: 'flypaper_scmgr',
+                db_name: 'flypaper_scdb',
+                db_password: 'maxwel123',
+                query: query,
+                all: all
+        });
+        return this.http.post('http://dsykes.esy.es/php/adb/adb.php', data).map(res => res.json());
+    };
+}
