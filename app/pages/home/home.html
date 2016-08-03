@@ -1,0 +1,39 @@
+
+<ion-header>
+  <ion-toolbar class="home-header">
+      <ion-buttons start>
+      <button light  (click)="refreshLocation()">
+        <ion-icon name="eye"></ion-icon>
+      </button>
+    </ion-buttons>
+      <ion-title>Conquer Quest!</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+    <ion-card style="height:auto;">
+        <p>{{ lat }} - {{ long }}</p>
+        <p>{{ address }}</p>
+    </ion-card>
+    <ion-card class="character-bg">
+      <div class="card-title">My Character</div>
+    </ion-card>
+
+    <ion-card class="inventory-bg">
+      <div class="card-title">Inventory</div>
+      <div class="card-subtitle">13 Owned Items</div>
+    </ion-card>
+
+    <ion-card class="skills-bg">
+    <div class="card-title">Skills</div>
+    <div class="card-subtitle">72 Known Skills</div>
+    </ion-card>
+
+    <ion-card class="adventure-bg" (click)="goToPage(AdventureMode)">
+
+    <div class="card-title">Adventure</div>
+    <div class="card-subtitle">28 Listings</div>
+    </ion-card>
+
+</ion-content>
+

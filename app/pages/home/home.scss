@@ -1,0 +1,71 @@
+.card-background-page {
+   
+background-image: url('http://www.e-reviews.co/wp-content/uploads/2015/11/dark-blurred-background-blur-background-dark-blur-amazing-decor-wg-dark-background2.jpg');
+    background-size:cover;
+    background-position: center;
+  ion-card {
+    position: relative;
+    text-align: center;
+    height:350px;
+  }
+
+  .card-title {
+    position: absolute;
+    top: 36%;
+    font-size: 3.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+  }
+    
+    .inventory-bg{
+        background-image: url('https://warrencbennett.files.wordpress.com/2014/03/crafted-weapons-shields-teso-concept-art.jpg');
+        background-position: center;
+        background-size: 250% 160%;
+    }
+    
+    .character-bg{
+        background-image: url('https://s-media-cache-ak0.pinimg.com/564x/c2/9c/70/c29c703bb3d2e9261e2b3d417cebe93a.jpg');
+        background-size: 110% 110%;
+        background-position: top;
+        
+    }
+    
+    .skills-bg{
+        background-image: url('http://www.supergameasset.com/image/cache/data/Asset/Icon/Fantasy%20RPG%20Hero%20Skill%20wm%2001-700x600.jpg');
+    }
+    
+    .adventure-bg{
+        background-image:url('http://www.walldevil.com/wallpapers/w07/the-elder-scrolls-iv-oblivion-video-games-rpg-imperial-city-artwork-concept-art-digital-art-medieval-bows-swords-warriors-tower-valleys-valley-mountains-landscapes.jpg');
+        background-position: top
+    }
+
+  .card-subtitle {
+    font-size: 1.2em;
+    position: absolute;
+    top: 48%;
+    width: 100%;
+    color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+
+}
+
+.home-header{
+    box-shadow:4px 4px 8px rgba(0,0,0,0.6);
+    .toolbar-background{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#8f0222+3,680203+100 */
+background: #8f0222; /* Old browsers */
+background: -moz-linear-gradient(top, #8f0222 3%, #680203 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #8f0222 3%,#680203 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #8f0222 3%,#680203 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8f0222', endColorstr='#680203',GradientType=0 ); /* IE6-9 */
+        color:#fff;
+
+    }
+    
+    .toolbar-title{
+        color:#fff;
+    }
+}
