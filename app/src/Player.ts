@@ -7,13 +7,23 @@ import {BackService} from '../services/BackService';
 
 Injectable()
 export class Player{
-    name: string = null;
+    _name: string;
     armoryMgr: ArmoryMgr;
     classMgr: ClassMgr;
     profMgr: ProfessionsMgr;
     
-    constructor(){   
-        
+    Stats: any = {
+        STR: 50,
+        AGI: 50,
+        INT: 50,
+        AMR: 50,
+        SPR: 50
+    }
+
+    constructor(){  }
+    
+    _(name: string, plr: Player){
+        plr._name = name;
     }
 
 }

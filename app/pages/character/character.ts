@@ -9,9 +9,12 @@ import {BackService} from '../../services/BackService';
 })
 
 export class CharacterPage {
-    myPlr: Player;
+    _plr: Player;
     
-constructor(private http: Http){
-        
+    constructor(private http: Http, plr: Player){
+        this._plr = plr;
+       plr._('DSYKESS', this._plr);
     }   
+    
+    
 }

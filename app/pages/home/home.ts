@@ -1,6 +1,6 @@
 /// <reference path="../../../typings/globals/google.maps/index.d.ts" />
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, Loading} from 'ionic-angular';
 import {Geolocation} from 'ionic-native';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/Rx';
@@ -19,7 +19,7 @@ providers: [BackService]
 export class HomePage {
     loC: any;
     loCError: any;
-    address: string;
+    address: any;
     users:any;
     mess: string;
     incre: any;
@@ -33,7 +33,15 @@ export class HomePage {
         
         this.initGeo();
         this.watchPos();
-        
+        this.presentLoading();
+    }
+    
+    presentLoading() {
+      let loading = Loading.create({
+        content: "Loading Epicness!",
+        duration: 2000
+      });
+      this.navCtrl.present(loading);
     }
 
     initGeo(){
@@ -43,9 +51,9 @@ export class HomePage {
             this.lat = lat;
             this.long = long;
             this.bService.getPosInfo(lat, long).subscribe((data) => {
-                this.address = data.results[0].formated_address;
+                this.address = data.results[0].formatted_address;
             });
-            }, (error) => console.log(error.message));
+        }, (error) => console.log(error.message));
     }
     
     goToChar(){
@@ -64,8 +72,11 @@ export class HomePage {
     }
     
     watchPos(){
-        setInterval(() => {
-            this.initGeo();
-        }, 1000);
+        setTimeout(() => {
+            setInterval(() => {
+                this.initGeo();
+            }, 500);
+        }, 2000);
     }
+    
 }

@@ -20,7 +20,8 @@ constructor(private http: Http){ }
     }
     
     getPosInfo(lat, long){
-        return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+long+'', null).map((res) => res.json());
+        return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+long+'',null)
+            .map(res => res.json());
     }
     
     getData(query, all){
