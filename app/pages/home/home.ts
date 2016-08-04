@@ -39,7 +39,7 @@ export class HomePage {
     presentLoading() {
       let loading = Loading.create({
         content: "Loading Epicness!",
-        duration: 1000
+        duration: 500
       });
       this.navCtrl.present(loading);
     }

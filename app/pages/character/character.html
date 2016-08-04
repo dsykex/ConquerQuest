@@ -44,7 +44,7 @@
             <p>Main Hand:</p>
             <p primary>{{ _plr.armoryMgr._item._name }}</p>
         </ion-card-content>
-        <ion-card-content>
+        <ion-card-content *ngIf="_plr.armoryMgr._item._type == _plr.armoryMgr.itemTypes.WEAPON">
             <p>Damage:</p>
             <p primary>{{ _plr.armoryMgr._item._weaponDmg.min }}  /  {{ _plr.armoryMgr._item._weaponDmg.max }}</p>
             <p>Durability:</p>
