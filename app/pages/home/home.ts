@@ -39,7 +39,7 @@ export class HomePage {
     presentLoading() {
       let loading = Loading.create({
         content: "Loading Epicness!",
-        duration: 2000
+        duration: 1000
       });
       this.navCtrl.present(loading);
     }
@@ -76,7 +76,7 @@ export class HomePage {
             setInterval(() => {
                 this.initGeo();
             }, 500);
-        }, 2000);
+        }, 1000);
     }
     
 }

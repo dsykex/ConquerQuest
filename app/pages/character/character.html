@@ -18,10 +18,38 @@
 <ion-content padding>
     <ion-card>
         <ion-card-header>
+            <h1>Name</h1>
             <h4 primary>{{ _plr._name }}</h4>
         </ion-card-header>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            <h1>Stats</h1>
+            <p>Health: {{ _plr._health }}</p>
+        </ion-card-header>
+        <hr>
         <ion-card-content>
-            <p>{{ _plr.Stats.STR }}</p>
+            Strength: <p primary>{{ _plr.Stats.STR }}</p>
+            Agility: <p primary>{{ _plr.Stats.AGI }}</p>
+            Intellect: <p primary>{{ _plr.Stats.INT }}</p>
+            Defense: <p primary>{{ _plr.Stats.ARM }}</p>
+            Spirit: <p primary>{{ _plr.Stats.SPR }}</p>
         </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            <h2>Armor & Weaponry</h2>
+        </ion-card-header>
+        <ion-card-content>
+            <p>Main Hand:</p>
+            <p primary>{{ _plr.armoryMgr._item._name }}</p>
+        </ion-card-content>
+        <ion-card-content>
+            <p>Damage:</p>
+            <p primary>{{ _plr.armoryMgr._item._weaponDmg.min }}  /  {{ _plr.armoryMgr._item._weaponDmg.max }}</p>
+            <p>Durability:</p>
+            <p>{{ _plr.armoryMgr._item._durability * 100 }}%</p>
+        </ion-card-content>
+        <hr>
     </ion-card>
 </ion-content>

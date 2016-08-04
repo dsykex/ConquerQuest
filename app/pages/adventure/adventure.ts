@@ -34,7 +34,7 @@ export class AdventureMode{
         let latLng = new google.maps.LatLng(lat, long);
         let mapOptions = {
           center: latLng,
-          zoom: 30,
+          zoom: 18,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         }
         this.map = new google.maps.Map(document.getElementById("map"), mapOptions);

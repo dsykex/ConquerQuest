@@ -11,19 +11,26 @@ export class Player{
     armoryMgr: ArmoryMgr;
     classMgr: ClassMgr;
     profMgr: ProfessionsMgr;
+    _health: number;
+    _wounded: number = 0.8;
+    
     
     Stats: any = {
         STR: 50,
         AGI: 50,
         INT: 50,
-        AMR: 50,
+        ARM: 50,
         SPR: 50
     }
 
-    constructor(){  }
+constructor(){ 
+      
+    }
     
     _(name: string, plr: Player){
         plr._name = name;
+        plr._health = ((plr.Stats.STR + plr.Stats.AGI + 
+        plr.Stats.INT + plr.Stats.ARM + plr.Stats.SPR) * 0.8) * (this._wounded);
     }
 
 }
