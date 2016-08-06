@@ -25,7 +25,7 @@ export class ArmoryMgr{
                 
             case this.itemTypes.ARMOR:{
                 let armorMod = item._defense;
-                plr.Stats.ARM += (item._defense * 0.7) * item._durability;
+                //plr.Stats.ARM += item._defense;
             }break;
         }
                
@@ -62,6 +62,7 @@ export class ArmoryMgr{
             }break;
         }
         
+   
         console.log(plr);
     }
     

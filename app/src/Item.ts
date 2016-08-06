@@ -7,6 +7,8 @@ export class Item{
     _type: any;
     _slot: any;
     _isBuffable: boolean;
+    _level: number;
+    
     Stats: any = {
         STR: 50,
         AGI: 50,

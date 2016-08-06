@@ -19,8 +19,8 @@ constructor(private http: Http){ }
         return Geolocation.getCurrentPosition(options);
     }
     
-    getPosInfo(lat, long){
-        return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+long+'',null)
+    getPosInfo(){
+        return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=41.111252,-81.514024',null)
             .map(res => res.json());
     }
     

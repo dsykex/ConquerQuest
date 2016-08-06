@@ -2,15 +2,18 @@
     <ion-navbar class="home-header">
         <ion-title>Adventure</ion-title>
 </ion-navbar>
-        <ion-toolbar class="toolbar-bg">
+<ion-toolbar class="toolbar-bg">
   <ion-buttons start>
     <button>
-      <ion-icon name="create" class="subheader-btn"></ion-icon>
+      <ion-icon name="ios-flash" class="subheader-btn"></ion-icon>
     </button>
   </ion-buttons>
   <ion-segment>
-    <ion-segment-button value="new">
-      New
+    <ion-segment-button value="control" (click)="controlLocation()">
+      Create A Base
+    </ion-segment-button>
+    <ion-segment-button value="hot">
+      Hot
     </ion-segment-button>
     <ion-segment-button value="hot">
       Hot

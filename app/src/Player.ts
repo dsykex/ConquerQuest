@@ -14,7 +14,9 @@ export class Player{
     profMgr: ProfessionsMgr;
     _health: number;
     _wounded: number = 1;
-    
+    _controlSphere: any;
+    _level: number = 1;
+
     EquipmentSlots: any = {
         HEAD: 1,
         SHOULDER: 2,
@@ -35,7 +37,7 @@ export class Player{
         SPR: 50
     }
 
-constructor(){ 
+    constructor(){ 
       
     }
     

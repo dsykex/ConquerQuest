@@ -13,10 +13,12 @@ import {Item} from '../../src/Item';
 export class CharacterPage {
     _plr: Player;
     _plrEquipment: any;
-constructor(private http: Http, plr: Player, armMgr: ArmoryMgr){
+
+    constructor(private http: Http, plr: Player, armMgr: ArmoryMgr){
         this._plr = plr;
         this._plr.armoryMgr = armMgr;
         plr._('DSYKESS', this._plr);
+        
         let _itemStats = {
             STR: 100,
             AGI: 100, 
@@ -29,12 +31,13 @@ constructor(private http: Http, plr: Player, armMgr: ArmoryMgr){
         plrArmory._makeItem('DSykes Sword', 1, _itemStats, {min: 100, max: 500}, 0, plrArmory.itemTypes.WEAPON, this._plr.EquipmentSlots.MAIN_HAND);
         plrArmory.equipItem(plrArmory._item, this._plr, plrArmory.itemTypes.WEAPON, this._plr.EquipmentSlots.MAIN_HAND);
         
-        plrArmory._makeItem('DSykes Breastplate', 1, _itemStats, 0, 400, plrArmory.itemTypes.ARMOR, this._plr.EquipmentSlots.CHEST);
+        plrArmory._makeItem('DSykes Breastplate', 1, _itemStats, 0, 600, plrArmory.itemTypes.ARMOR, this._plr.EquipmentSlots.CHEST);
         plrArmory.equipItem(plrArmory._item, this._plr, plrArmory.itemTypes.ARMOR, this._plr.EquipmentSlots.CHEST);
     
-    plrArmory._makeItem('DSykes Off-Hand Dagger', 1, _itemStats, {min: 100, max: 200}, 0, plrArmory.itemTypes.WEAPON, this._plr.EquipmentSlots.OFF_HAND);
+        plrArmory._makeItem('DSykes Off-Hand Dagger', 1, _itemStats, {min: 100, max: 200}, 0, plrArmory.itemTypes.WEAPON, this._plr.EquipmentSlots.OFF_HAND);
         plrArmory.equipItem(plrArmory._item, this._plr, plrArmory.itemTypes.ARMOR, this._plr.EquipmentSlots.OFF_HAND);
     
         this._plrEquipment = this._plr.EquipmentSlots;
+        console.log(this._plrEquipment);
     }   
 }

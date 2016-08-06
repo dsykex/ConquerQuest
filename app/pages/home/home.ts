@@ -13,8 +13,8 @@ import {CharacterPage} from '../character/character';
 import {BackService} from '../../services/BackService';
 
 @Component({
-  templateUrl: 'build/pages/home/home.html',
-providers: [BackService]
+    templateUrl: 'build/pages/home/home.html',
+    providers: [BackService]
 })
 export class HomePage {
     loC: any;
@@ -31,8 +31,8 @@ export class HomePage {
         this.loadData();
         
         
-        this.initGeo();
-        this.watchPos();
+        //this.initGeo();
+        //this.watchPos();
         this.presentLoading();
     }
     
@@ -44,17 +44,17 @@ export class HomePage {
       this.navCtrl.present(loading);
     }
 
-    initGeo(){
+    /*initGeo(){
         this.bService.getLatLng().then((pos) => {
             let lat = pos.coords.latitude;
             let long = pos.coords.longitude;
             this.lat = lat;
             this.long = long;
-            this.bService.getPosInfo(lat, long).subscribe((data) => {
+            this.bService.getPosInfo().subscribe((data) => {
                 this.address = data.results[0].formatted_address;
             });
         }, (error) => console.log(error.message));
-    }
+    }*/
     
     goToChar(){
         this.navCtrl.push(CharacterPage);
@@ -66,17 +66,17 @@ export class HomePage {
 
     
     loadData(){
-            this.bService.getData('get all users', true).subscribe(data => {
+        this.bService.getData('get all users', true).subscribe(data => {
             console.log(data);
         });
     }
     
-    watchPos(){
+    /*watchPos(){
         setTimeout(() => {
             setInterval(() => {
-                this.initGeo();
-            }, 500);
-        }, 1000);
-    }
+                //this.initGeo();
+            }, 2000);
+        }, 4000);
+    }*/
     
 }

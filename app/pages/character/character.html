@@ -1,28 +1,24 @@
 <ion-header>
-    <ion-navbar primary>
-        <ion-buttons start>
-            <button>
-                <ion-icon name="walk"></ion-icon>
-            </button>
-        </ion-buttons>
+    <ion-navbar class="home-header">
+        
         <ion-title>
             Character Page
         </ion-title>
-                <ion-buttons end>
+        <ion-buttons end>
             <button>
                 <ion-icon name="more"></ion-icon>
             </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
-<ion-content padding>
-    <ion-card>
+<ion-content padding class="character">
+    <ion-card class="gear-list">
         <ion-card-header>
             <h1>Name</h1>
             <h4 primary>{{ _plr._name }}</h4>
         </ion-card-header>
     </ion-card>
-    <ion-card>
+    <ion-card class="gear-list">
         <ion-card-header>
             <h1>Stats</h1>
             <p>Health: {{ _plr._health }}</p>
@@ -36,20 +32,38 @@
             Spirit: <p primary>{{ _plr.Stats.SPR }}</p>
         </ion-card-content>
     </ion-card>
-    <ion-card>
+    <ion-card class="gear-list">
         <ion-card-header>
-            <h2>Armor & Weaponry</h2>
+            <h2 primary>Armor & Weaponry</h2>
         </ion-card-header>
         <ion-card-content>
             <p>Main Hand:</p>
-            <p primary>{{ _plr.armoryMgr._item._name }}</p>
+            <p primary>{{ _plrEquipment.MAIN_HAND._name }}</p>
         </ion-card-content>
-        <ion-card-content *ngIf="_plr.armoryMgr._item._type == _plr.armoryMgr.itemTypes.WEAPON">
+        <ion-card-content>
             <p>Damage:</p>
-            <p primary>{{ _plr.armoryMgr._item._weaponDmg.min }}  /  {{ _plr.armoryMgr._item._weaponDmg.max }}</p>
-            <p>Durability:</p>
-            <p>{{ _plr.armoryMgr._item._durability * 100 }}%</p>
+            <p primary>{{ _plrEquipment.MAIN_HAND._weaponDmg.min }}  /  {{ _plrEquipment.MAIN_HAND._weaponDmg.max }}</p>
+            <p>Durability: {{ _plrEquipment.MAIN_HAND._durability * 100 }}%</p>
         </ion-card-content>
-        <hr>
+        <hr primary>
+        <ion-card-header>
+            <p>Off Hand:</p>
+            <p primary>{{ _plrEquipment.OFF_HAND._name }}</p>
+        </ion-card-header>
+        <ion-card-content>
+            <p>Damage:</p>
+            <p primary>{{ _plrEquipment.OFF_HAND._weaponDmg.min }}  /  {{ _plrEquipment.OFF_HAND._weaponDmg.max }}</p>
+            <p>Durability: {{ _plrEquipment.OFF_HAND._durability * 100 }}%</p>
+        </ion-card-content>
+        <hr primary>
+        <ion-card-header>
+            <p>Head:</p>
+        </ion-card-header>
+        <ion-card-content *ngIf="!_plrEquipment.HEAD._name">
+            <p><ion-icon name="cancel"></ion-icon> No head-piece equiped.</p>
+        </ion-card-content>
+        <ion-card-content>
+            <p></p>
+        </ion-card-content>
     </ion-card>
 </ion-content>
