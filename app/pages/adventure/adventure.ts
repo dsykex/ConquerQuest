@@ -6,35 +6,80 @@ import {BackService} from '../../services/BackService';
 import {Item} from '../../src/Item';
 import {Player} from '../../src/Player';
 import {Weapon} from '../../src/Weapon';
-import {Armor} from '../../src/Armor';
+import {ArmoryMgr} from '../../src/ArmoryMgr';
 
 @Component({
     templateUrl: 'build/pages/adventure/adventure.html',
-    providers: [BackService]
+    providers: [Player, BackService, ArmoryMgr]
 })
 
 export class AdventureMode{
     map: any;
-    _plr:Player;
+    plr:Player;
     places: any;
     statusErrorr: any;
-
-
-    constructor(private http: Http, private bService: BackService){
+ 
+    constructor(_plr: Player, private http: Http, private bService: BackService){
+        this.plr = _plr;
         this.bService.getPosInfo().subscribe((pos) => {
             let lat = '41.111252';
             let long = '-81.514024';
-           
+            
             this.loadMap(lat,long);
+            _plr._('DSykes Da Namee', this.plr);
         }, (error) => console.log(error.message));
     }
     
     conquerLocation(plr: Player){
-        this._plr = plr;
-        plr._('DSykesBiih', this._plr);
+        plr._conquerSphere._level = plr._level;
+        console.log(plr._conquerSphere._level);
 
+        let marker = new google.maps.Marker({
+            map: this.map,
+            animation: google.maps.Animation.DROP,
+            position: this.map.getCenter()
+        });
         
+        let content = "<h4>ffs</h4><p>fdfsffdsf</p>";         
+        this.addInfoWindow(marker, content);
     }
+
+    addInfoWindow(marker, content){
+        let infoWindow = new google.maps.InfoWindow({
+            content: content
+        });
+        
+        google.maps.event.addListener(marker, 'click', function(){
+            infoWindow.open(this.map, marker);
+        });
+    }
+
+    /*presentActionSheet() {
+        let actionSheet = this.actionSheetController.then({
+        title: 'Modify your album',
+        buttons: [
+            {
+            text: 'Destructive',
+            role: 'destructive',
+            handler: () => {
+                console.log('Destructive clicked');
+            }
+            },{
+            text: 'Archive',
+            handler: () => {
+                console.log('Archive clicked');
+            }
+            },{
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+                console.log('Cancel clicked');
+            }
+            }
+        ]
+        });
+        actionSheet.present();
+    }*/
 
     loadMap(lat, long)
     {

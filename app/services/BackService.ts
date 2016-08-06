@@ -36,4 +36,10 @@ constructor(private http: Http){ }
         });
         return this.http.post('http://dsykes.esy.es/php/adb/adb.php', data).map(res => res.json());
     };
+
+    plrWatcher(){
+        setInterval( () => {
+            console.log('Set');
+        })
+    }
 }

@@ -3,6 +3,7 @@ import {Geolocation} from 'ionic-native';
 import {ArmoryMgr} from './ArmoryMgr';
 import {ClassMgr} from './ClassMgr';
 import {ProfessionsMgr} from './ProfessionsMgr';
+import {ConquerSphere} from './ConquerSphere';
 import {BackService} from '../services/BackService';
 import {Item} from './Item';
 
@@ -14,7 +15,7 @@ export class Player{
     profMgr: ProfessionsMgr;
     _health: number;
     _wounded: number = 1;
-    _controlSphere: any;
+    _conquerSphere: ConquerSphere;
     _level: number = 1;
 
     EquipmentSlots: any = {
@@ -45,6 +46,7 @@ export class Player{
         plr._name = name;
         plr._health = ((plr.Stats.STR + plr.Stats.AGI + 
         plr.Stats.INT + plr.Stats.ARM + plr.Stats.SPR) * 0.9) * (this._wounded);
+        plr._conquerSphere = new ConquerSphere();
     }
 
 }

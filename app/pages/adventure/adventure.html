@@ -1,32 +1,40 @@
 <ion-header>
-    <ion-navbar class="home-header">
-        <ion-title>Adventure</ion-title>
-</ion-navbar>
-<ion-toolbar class="toolbar-bg">
-  <ion-buttons start>
-    <button>
-      <ion-icon name="flag" class="subheader-btn"></ion-icon>
-    </button>
-  </ion-buttons>
-  <ion-segment>
-    <ion-segment-button value="control" (click)="controlLocation()">
-      <ion-icon name="flag" class="subheader-btn"></ion-icon>
-    
-    </ion-segment-button>
-    <ion-segment-button value="hot">
-      Hot
-    </ion-segment-button>
-    <ion-segment-button value="hot">
-      Hot
-    </ion-segment-button>
-  </ion-segment>
-  <ion-buttons end>
-    <button>
-      <ion-icon name="more" class="subheader-btn"></ion-icon>
-    </button>
-  </ion-buttons>
-</ion-toolbar>
+  <ion-navbar class="home-header">
+    <ion-title>Adventure Mode</ion-title>
+  </ion-navbar>
+  <ion-toolbar class="toolbar-bg">
+    <ion-buttons start>
+      <button>
+        <ion-icon name="map" class="subheader-btn"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-segment>
+        <ion-segment-button>
+          PvP
+        </ion-segment-button>
+    </ion-segment>
+    <ion-buttons end>
+      <button>
+        <ion-icon name="more" class="subheader-btn"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
   <div id="map"></div>
 </ion-content>
+<ion-footer>
+  <ion-toolbar class="toolbar-bg">
+    <ion-segment>
+      <ion-segment-button value="control">
+        <ion-icon name="hand"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="" class="conquer-btn" (click)="conquerLocation(plr)">
+        <ion-icon name="flag" class="subheader-btn"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="hot">
+        <ion-icon name="eye" class="subheader-btn"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
