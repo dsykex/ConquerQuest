@@ -6,9 +6,11 @@ import {ProfessionsMgr} from './ProfessionsMgr';
 import {ConquerSphere} from './ConquerSphere';
 import {BackService} from '../services/BackService';
 import {Item} from './Item';
+import {Base} from './Base';
 
 Injectable()
 export class Player{
+    _id: number = 1;
     _name: string;
     armoryMgr: ArmoryMgr;
     classMgr: ClassMgr;
@@ -17,7 +19,9 @@ export class Player{
     _wounded: number = 1;
     _conquerSphere: ConquerSphere;
     _level: number = 1;
-
+    _base: Base;
+    _bases: any = [];
+    
     EquipmentSlots: any = {
         HEAD: 1,
         SHOULDER: 2,
@@ -47,6 +51,7 @@ export class Player{
         plr._health = ((plr.Stats.STR + plr.Stats.AGI + 
         plr.Stats.INT + plr.Stats.ARM + plr.Stats.SPR) * 0.9) * (this._wounded);
         plr._conquerSphere = new ConquerSphere();
+        plr._base = new Base();
     }
 
 }
