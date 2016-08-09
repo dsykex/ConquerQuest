@@ -8,7 +8,7 @@ import {Player} from '../../src/Player';
 import {Weapon} from '../../src/Weapon';
 import {ArmoryMgr} from '../../src/ArmoryMgr';
 import {Base} from '../../src/Base';
-import {Loading, NavController, Toast} from 'ionic-angular';
+import {Loading, NavController, Toast, ActionSheet, Alert} from 'ionic-angular';
 
 @Component({
     templateUrl: 'build/pages/adventure/adventure.html',
@@ -43,74 +43,99 @@ export class AdventureMode{
     }
     
     conquerLocation(plr: Player){
+
         plr._conquerSphere._level = plr._level; 
         this.showLoading('Conquering Location..', 1000);
         
+        let position = {lat: this.map.getCenter().lat(),
+            lng: this.map.getCenter().lng()
+        };
+        setTimeout( () =>{
+            
+        
+        this.showPrompt();
         this.bService.getData('get all bases', true).subscribe(data => {
-            let localBases = (data.length) ? data.filter( (lbases) =>{
+            let localBases = (data.length) ? data.filter( (lbases) => {
                 return lbases.area == this.area;
             }) : null;
             if(localBases){
-            localBases.forEach((base) => {
-                if(base.lat == this.lat && base.lng == this.lng){
-                    this.presentToast('You will have to conquor this base!', 1000, 'middle');
-                }else{
-                    let query = 'INSERT INTO bases (`name`, `lat`, `lng`, `level`, `city`, `area`, `owner_id`) VALUES ("DSykesBase", "'+this.lat+'", "'+this.lng+'", '+plr._conquerSphere._level+', "'+this.city+'", "'+this.area+'", '+plr._id+');';
-                    console.log(query + ':(');
-
-                
-
-                    setTimeout( () => {
-                        this.bService.execute(query)
-                            .subscribe(data => {
-                                console.log(data);
-                                this.initConquer(plr);
-                                this.presentToast('Base succesfully conquered!', 1000, 'middle');
-                            }, (error) => {
-                                this.presentToast('There was an error aquiring the base.', 1000, 'middle');
-                                console.log(error);
-                            });
-                    }, 2500);
-                }
-            });
+                localBases.forEach((base) => {
+                    let distance = this.bService.getDistance(position.lat, position.lng, base.lat, base.lng, 'meters');
+                    console.log(distance);
+                    if(distance < 2.5){
+                        this.presentToast('You will have to conquor this base!', 1000, 'middle');
+                    }else{
+                        
+                        this.initConquer(plr);
+                    }
+                });
             }else{
                 let query = 'INSERT INTO bases (`name`, `lat`, `lng`, `level`, `city`, `area`, `owner_id`) VALUES ("DSykesBase", "'+this.lat+'", "'+this.lng+'", '+plr._conquerSphere._level+', "'+this.city+'", "'+this.area+'", '+plr._id+');';
-                console.log(query);
+                
         
                 console.log(plr._conquerSphere._level);
-                setTimeout( () => {
-                    
-                    this.bService.execute(query)
-                        .subscribe(data => {
-                            console.log(data);
-                            this.initConquer(plr);
-                            this.presentToast('Base succesfully conquered!', 1000, 'middle');
-                        }, (error) => {
-                            this.presentToast('There was an error aquiring the base.', 2000, 'middle');
-                            console.log(error);
-                        });
-                }, 2500);
+                this.bService.execute(query)
+                    .subscribe(data => {
+                        console.log(data);
+                        this.initConquer(plr);
+                        this.presentToast('Base succesfully conquered!', 1000, 'middle');
+                    }, (error) => {
+                        this.presentToast('There was an error aquiring the base.', 2000, 'middle');
+                        console.log(error);
+                    });
+    
             }
         });
+        }, 2000);
     }
 
-    initConquer(plr: Player){
 
-        let marker = new google.maps.Marker({
-            map: this.map,
-            animation: google.maps.Animation.DROP,
-            position: this.map.getCenter()
+    showPrompt() {
+        let prompt = Alert.create({
+        title: 'Login',
+        message: "Enter a name for this new album you're so keen on adding",
+        inputs: [
+            {
+            name: 'title',
+            placeholder: 'Title'
+            },
+        ],
+        buttons: [
+            {
+            text: 'Cancel',
+            handler: data => {
+                console.log('Cancel clicked');
+            }
+            },
+            {
+                text: 'Save',
+                handler: data => {
+                    console.log('Saved clicked');
+                    console.log(data)
+                }
+            }
+        ]
         });
+        this.navCtrl.present(prompt);
+    }
+    initConquer(plr: Player){
+        let query = 'INSERT INTO bases (`name`, `lat`, `lng`, `level`, `city`, `area`, `owner_id`) VALUES ("DSykesBase", "'+this.lat+'", "'+this.lng+'", '+plr._conquerSphere._level+', "'+this.city+'", "'+this.area+'", '+plr._id+');';
+        let insertSub = null;
 
-        let position = {lat: this.map.getCenter().lat(),
-            lng: this.map.getCenter().lng()};
-        let content = "<h4>"+plr._name+"</h4><p>"+plr._conquerSphere._level+"</p>";         
-        this.addBaseInfoWindow(marker, content, plr._base);
-
-        plr._base._(plr._base, 'Base Name', position);
-        plr._bases.push(plr._base);
-        console.log(plr._bases);
-
+        setTimeout( () => {
+            insertSub = this.bService.execute(query)
+                .subscribe(data => {
+                    console.log(data);
+                    this.presentToast('Base succesfully conquered!', 1000, 'middle');
+                }, (error) => {
+                    this.presentToast('There was an error aquiring the base.', 1000, 'middle');
+                });
+        }, 2500);
+        this.bService.getData('get all bases', true).subscribe(data => {
+            let _localBases = data.filter((_b) => {
+                return _b.area = this.area;
+            });
+        });
     }
 
     presentToast(message, time, pos) {
@@ -143,7 +168,7 @@ export class AdventureMode{
         
         google.maps.event.addListener(marker, 'click', function(){
             infoWindow.open(this.map, marker);
-            alert('AW SHIT');
+            
         });
     }
 
@@ -174,6 +199,36 @@ export class AdventureMode{
         let mapOptions = {
           center: latLng,
           zoom: 18,
+          styles: [
+            {
+              featureType: 'all',
+              stylers: [
+                
+                { hue: '#9f0000' }
+              ]
+            },{
+              featureType: 'road',
+              elementType: 'geometry.fill',
+              stylers: [
+                { saturation: 100 },
+                { hue: '#2582fc' }
+              ]
+            },{
+              featureType: 'road.arterial',
+              elementType: 'geometry',
+              stylers: [
+                { hue: '#9f0000' },
+                { saturation: 50 },
+                { visibility: 'simplified'}
+              ]
+            },{
+              featureType: 'poi',
+              elementType: 'labels',
+              stylers: [
+                { visibility: 'off' }
+              ]
+            }
+          ],
           mapTypeId: google.maps.MapTypeId.ROADMAP
         }
 
@@ -194,7 +249,7 @@ export class AdventureMode{
                     title: 'Hello World!'
                 });
                 let distance= this.bService.getDistance(lat, long, placeLat, placeLong, 'miles');
-                let content = '<h4>'+place.name+'</h4><p>'+place.vicinity+'</p><p>"+distance+" meters away</p><input type="button">Stuff</button>';         
+                let content = '<h4 primary>'+place.name+'</h4><p>'+place.vicinity+'</p><p>'+distance+' meters away</p><button class="button button-full">Items</button><button class="button button-full">Items</button>';         
                 this.addInfoWindow(marker, content);
             });
         }, 1000);
