@@ -1,5 +1,5 @@
 
-<ion-header>
+<ion-header *ngIf="headerLoaded" class="animated bounceInDown">
   <ion-toolbar class="home-header">
       <ion-buttons start>
       <button light  (click)="refreshLocation()">
@@ -11,25 +11,24 @@
 </ion-header>
 
 <ion-content class="card-background-page">
-    <ion-card style="height:auto;">
-        <p>{{ lat }} - {{ long }}</p>
+    <ion-card *ngIf="loaded" style="height:auto;">
         <p>{{ address }}</p>
     </ion-card>
-    <ion-card class="character-bg" (click)="goToChar()">
+    <ion-card *ngIf="loaded" class="character-bg  animated fadeIn slideInDown" (click)="goToChar()">
       <div class="card-title">My Character</div>
     </ion-card>
 
-    <ion-card class="inventory-bg" (click)="goToInventory()">>
+    <ion-card *ngIf="loaded" class="inventory-bg  animated slideInDown" (click)="goToInventory()">>
       <div class="card-title">Inventory</div>
       <div class="card-subtitle">13 Owned Items</div>
     </ion-card>
 
-    <ion-card class="skills-bg"  (click)="goToSkills()">>
+    <ion-card *ngIf="loaded" class="skills-bg  animated slideInDown"  (click)="goToSkills()">>
     <div class="card-title">Skills</div>
     <div class="card-subtitle">72 Known Skills</div>
     </ion-card>
 
-    <ion-card class="adventure-bg" (click)="goToAdv()">
+    <ion-card *ngIf="loaded" class="adventure-bg  animated slideInDown" (click)="goToAdv()">
 
     <div class="card-title">Adventure</div>
     <div class="card-subtitle">28 Listings</div>

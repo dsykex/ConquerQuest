@@ -1,8 +1,8 @@
 <ion-header>
-  <ion-navbar class="home-header">
+  <ion-navbar class="home-header animated bounceIn">
     <ion-title>Adventure Mode</ion-title>
   </ion-navbar>
-  <ion-toolbar class="toolbar-bg">
+  <ion-toolbar class="toolbar-bg animated fadeIn">
     <ion-buttons start>
       <button>
         <ion-icon name="map" class="subheader-btn"></ion-icon>
@@ -16,9 +16,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div id="map"></div>
+  <div id="map" class="animated flipInX"></div>
 </ion-content>
-<ion-footer>
+<ion-footer *ngIf="loaded" class="animated slideInUp">
   <ion-toolbar class="toolbar-bg">
     <ion-segment>
       <ion-segment-button value="control">

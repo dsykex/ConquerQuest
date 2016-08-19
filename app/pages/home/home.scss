@@ -1,12 +1,19 @@
 .card-background-page {
    padding:0;
-background-image: url('http://www.e-reviews.co/wp-content/uploads/2015/11/dark-blurred-background-blur-background-dark-blur-amazing-decor-wg-dark-background2.jpg');
-    background-size:cover;
-    background-position: center;
+    background: #545454; /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover, #545454 0%, #000000 100%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover, #545454 0%,#000000 100%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center, #545454 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#545454', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   ion-card {
     position: relative;
     text-align: center;
     height:350px;
+    
+    filter:contrast(1) grayscale(0.6);
+    margin-top:35px;
+    margin-bottom: -20px;
+    border:3px solid #8f0222;
   }
 
   .card-title {
@@ -23,22 +30,27 @@ background-image: url('http://www.e-reviews.co/wp-content/uploads/2015/11/dark-b
         background-image: url('https://warrencbennett.files.wordpress.com/2014/03/crafted-weapons-shields-teso-concept-art.jpg');
         background-position: center;
         background-size: 250% 160%;
+        
     }
     
     .character-bg{
         background-image: url('https://s-media-cache-ak0.pinimg.com/564x/c2/9c/70/c29c703bb3d2e9261e2b3d417cebe93a.jpg');
         background-size: 110% 110%;
         background-position: top;
+  
         
     }
     
     .skills-bg{
         background-image: url('http://www.supergameasset.com/image/cache/data/Asset/Icon/Fantasy%20RPG%20Hero%20Skill%20wm%2001-700x600.jpg');
+     
+
     }
     
     .adventure-bg{
         background-image:url('http://www.walldevil.com/wallpapers/w07/the-elder-scrolls-iv-oblivion-video-games-rpg-imperial-city-artwork-concept-art-digital-art-medieval-bows-swords-warriors-tower-valleys-valley-mountains-landscapes.jpg');
-        background-position: top
+        background-position: top;
+
     }
 
   .card-subtitle {

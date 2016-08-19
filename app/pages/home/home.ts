@@ -25,15 +25,22 @@ export class HomePage {
     incre: any;
     lat: any;
     long: any;
-    
+    loaded: boolean = false;
+    headerLoaded: boolean = false;
+
     constructor(private navCtrl: NavController, private http: Http, private bService: BackService)
     {
         this.loadData();
         
-        
         //this.initGeo();
         //this.watchPos();
         this.presentLoading();
+        setTimeout( () => {
+            this.headerLoaded = true;
+        }, 1500);
+        setTimeout( () => {
+            this.loaded  = true;
+        },2700);
     }
     
     presentLoading() {

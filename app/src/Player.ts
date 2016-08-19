@@ -22,6 +22,7 @@ export class Player{
     _base: Base;
     _bases: any = [];
     
+
     EquipmentSlots: any = {
         HEAD: 1,
         SHOULDER: 2,
@@ -42,9 +43,7 @@ export class Player{
         SPR: 50
     }
 
-    constructor(){ 
-      
-    }
+    constructor(){ }
     
     _(name: string, plr: Player){
         plr._name = name;
